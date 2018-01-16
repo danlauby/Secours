@@ -1,0 +1,37 @@
+{
+  "name": "secours",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch src  --exec babel-node -- src/index.js",
+    "db:migrate": "knex migrate:latest --knexfile ./src/knexfile.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Lauby",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-node6": "^0.4.0"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "bookshelf": "^0.12.1",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-rate-limit": "^2.11.0",
+    "jsonwebtoken": "^8.1.0",
+    "knex": "^0.14.2",
+    "lodash": "^4.17.4",
+    "pg": "^7.4.1",
+    "request": "^2.83.0",
+    "superagent": "^3.8.2",
+    "uuid": "^3.1.0",
+    "validator": "^9.2.0"
+  }
+}
