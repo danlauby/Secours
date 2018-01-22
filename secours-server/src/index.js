@@ -21,9 +21,8 @@ app.use('/api/doctors', doctors);
 app.get('/api/get-doctors',function(req, res) {
   const BDKey = process.env.BD_KEY;
   superagent
-  .get('https://api.betterdoctor.com/2016-03-01/doctors?mental%20health&location=45.6318,-122.6716,100&skip=2&limit=1&user_key=' + BDKey)
+  .get('https://api.betterdoctor.com/2016-03-01/doctors?location=37.773,-122.413,100&skip=2&limit=2&user_key=' + BDKey)
   .end(function(err, data) {
-    console.log('Response:',data.body);
     res.send(data.body);
   });
 });

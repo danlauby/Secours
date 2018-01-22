@@ -3,6 +3,7 @@ import * as types from "./../constants/ActionTypes";
 
 
 export function fetchDoctors() {
+  
   const url = '/api/get-doctors';
 
   return function(dispatch) {

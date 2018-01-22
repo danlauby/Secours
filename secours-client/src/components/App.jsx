@@ -8,7 +8,7 @@ import FlashMessagesList from './flash/FlashMessagesList';
 import SignupPage from './signup/SignupPage';
 import LoginPage from './login/LoginPage';
 import ShareContentPage from './shareContent/ShareContentPage';
-import DoctorsList from './doctors/DoctorsList';
+import Doctors from '../containers/Doctors';
 
 import requireAuth from '../utils/requireAuth';
 
@@ -25,7 +25,7 @@ class App extends React.Component {
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/content" component={requireAuth(ShareContentPage)} />
-              <Route exact path="/doctors" component={requireAuth(DoctorsList)} />
+              <Route exact path="/doctors" component={requireAuth(Doctors)} />
             </Switch>
 
       </div>

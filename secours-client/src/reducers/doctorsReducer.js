@@ -2,7 +2,7 @@ import * as types from "./../constants/ActionTypes";
 
 
 export default function reducer(state = {
-    doctors: [],
+    doctors: {},
     fetching: false,
     fetched: false,
     error: null,
@@ -18,6 +18,7 @@ export default function reducer(state = {
       case types.FETCH_DOCTORS_REJECTED: {
         return {
           ...state,
+          ...action.data.entities.doctor,
           fetching: false,
           error: action.payload
         }
