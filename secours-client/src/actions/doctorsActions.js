@@ -2,16 +2,16 @@ import axios from "axios";
 import * as types from "./../constants/ActionTypes";
 
 
-export function fetchDoctors() {
-  
+export const fetchDoctors = () => {
+
   const url = '/api/get-doctors';
 
-  return function(dispatch) {
+  return (dispatch) => {
     dispatch({
       type: types.FETCH_DOCTORS
     });
 
-    axios.get(url)
+    axios.get(url, {params: {name: 'Bob'}})
     .then((response) => {
       dispatch({
         type: types.FETCH_DOCTORS_FULFILLED,

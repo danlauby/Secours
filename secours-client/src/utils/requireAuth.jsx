@@ -34,7 +34,7 @@ export default function(ComposedComponent) {
     addFlashMessage: PropTypes.func.isRequired
   }
 
-  function mapStateToProps(state) {
+  const mapStateToProps = (state) => {
     return {
       isAuthenticated: state.auth.isAuthenticated
     }

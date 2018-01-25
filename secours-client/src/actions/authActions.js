@@ -3,14 +3,15 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import * as types from "./../constants/ActionTypes";
 
-export function setCurrentUser(user) {
+
+export const setCurrentUser = (user) => {
   return {
     type: types.SET_CURRENT_USER,
     user
   };
 }
 
-export function logout() {
+export const logout = () => {
   return dispatch => {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
@@ -18,7 +19,7 @@ export function logout() {
   }
 }
 
-export function login(data) {
+export const login = (data) => {
   return dispatch => {
     return axios.post('/api/auth', data).then(res => {
       const token = res.data.token;

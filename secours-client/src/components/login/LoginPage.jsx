@@ -1,9 +1,9 @@
 import React from 'react';
+
 import LoginForm from './LoginForm';
 
 
-class LoginPage extends React.Component {
-  render() {
+const LoginPage = () => {
     return (
       <div className="row">
         <div className="col-md-4 offset-md-4">
@@ -11,7 +11,6 @@ class LoginPage extends React.Component {
         </div>
       </div>
     )
-  }
 }
 
 export default LoginPage;

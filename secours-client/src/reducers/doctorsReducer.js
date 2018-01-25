@@ -2,7 +2,7 @@ import * as types from "./../constants/ActionTypes";
 
 
 export default function reducer(state = {
-    doctors: {},
+    doctors: [],
     fetching: false,
     fetched: false,
     error: null,

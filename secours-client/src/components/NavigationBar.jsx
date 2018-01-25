@@ -6,6 +6,7 @@ import { logout } from '../actions/authActions';
 
 
 class NavigationBar extends React.Component {
+
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
@@ -22,6 +23,7 @@ class NavigationBar extends React.Component {
     const userLinks = (
       <ul className="navbar-text navbar-right">
         <li><Link to="/doctors" className="navbar-right">Doctors</Link></li>
+        <li><Link to="/content" className="navbar-right">Content</Link></li>
         <li><a href="/" onClick={this.handleLogout}>Logout</a></li>
       </ul>
     )
@@ -53,7 +55,7 @@ NavigationBar.propTypes = {
   logout: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth
   };

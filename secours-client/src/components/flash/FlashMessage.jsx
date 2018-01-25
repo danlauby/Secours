@@ -23,7 +23,7 @@ class FlashMessage extends React.Component {
         <button onClick={this.handleClose} className="close"><span>&times;</span></button>
         {text}
       </div>
-    )
+    );
   }
 }
 
