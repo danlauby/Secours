@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { fetchDoctors } from "./../actions/doctorsActions";
+import { fetchDoctors } from "../../actions/doctorsActions";
 
-import DoctorView from './../components/doctors/DoctorView';
+import DoctorList from '../../components/doctors/DoctorList';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -17,9 +18,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const DoctorViewContainer = connect(
+const DoctorsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(DoctorView);
+)(DoctorList);
 
-export default DoctorViewContainer;
+export default DoctorsContainer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import requireAuth from '../utils/requireAuth';
 
-import DoctorList from '../containers/DoctorList';
+import DoctorList from '../containers/doctors/DoctorList';
 import NavigationBar from './NavigationBar';
 import Greeting from './Greeting';
 import SignupPage from './signup/SignupPage';

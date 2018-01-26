@@ -8,14 +8,17 @@ const DoctorView = ({ match, data }) => {
     let doctorData;
 
     if (doctor) {
+      const mappedSpecialties = Object.entries(doctor.specialties).map(([index, specialty]) => {
+        return <li key={index} id={index}>{specialty.description}</li>;
+        });
       doctorData =
         <div>
+          <h5 className="mb-1"><strong>{doctor.profile.first_name} {doctor.profile.last_name}</strong> - {doctor.profile.title}</h5>
           <img src={doctor.profile.image_url} alt={"Dr." + doctor.profile.first_name + " " + doctor.profile.last_name} />
-          <h5 className="mb-1">{doctor.profile.first_name} {doctor.profile.last_name}</h5>
+          <ul>{mappedSpecialties}</ul>
+          <p>{doctor.profile.bio}</p>
         </div>;
-    } else {
-      doctorData = <p>Loading...</p>;
-      }
+    }
       return (
         <div>
           {doctorData}
