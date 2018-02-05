@@ -3,7 +3,7 @@ import authenticate from '../middlewares/authenticate';
 
 let router = express.Router();
 
-router.post('/', authenticate, (req, res) => {
+router.post('/doctors', authenticate, (req, res) => {
   res.status(201).json({ success: true });
 });
 

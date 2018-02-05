@@ -8,7 +8,7 @@ const DoctorItem = (props) => {
   const { doctor, match } = props;
     return (
       <li>
-        <Link to={{pathname: `${match.url}/${doctor.uid}`, query: { uid: doctor.uid }}}>
+        <Link to={{ pathname: `${match.url}/${doctor.profile.first_name}-${doctor.profile.last_name}` }}>
           {doctor.profile.first_name} {doctor.profile.last_name}
         </Link>
       </li>

@@ -5,7 +5,6 @@ import * as types from "./../constants/ActionTypes";
 export const fetchDoctors = (issue) => {
   let url = '/api/get-doctors';
 
-  console.log(issue.issue);
   return (dispatch) => {
     dispatch({
       type: types.FETCH_DOCTORS

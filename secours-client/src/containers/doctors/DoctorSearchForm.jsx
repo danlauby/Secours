@@ -25,6 +25,7 @@ class DoctorSearchForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.fetchDoctors(this.state);
+    this.props.getMarkers();
   }
 
   render() {
@@ -35,7 +36,6 @@ class DoctorSearchForm extends React.Component {
             type="text"
             label="Issue"
             onChange={this.handleChange}
-            value="issue"
             name="issue"
             value={this.state.issue}
             field="issue"
