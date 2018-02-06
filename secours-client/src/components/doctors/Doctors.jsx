@@ -8,21 +8,20 @@ import Map from '../maps/Map';
 
 class Doctors extends Component {
 
-  state = {
-    markers: [],
-    isMarkerShown: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [],
+      isMarkerShown: false
+    }
   }
 
-  componentDidMount() {
-    this.getMarkers();
+  componentWillReceiveProps(nextProps) {
+    this.getMarkers(nextProps);
   }
 
-  handleMapMounted(map) {
-    this.map = map;
-  }
-
-  getMarkers = () => {
-    let practices = this.props.doctors.map(function(doctor, index) {
+  getMarkers = (props = this.props) => {
+    let practices = props.doctors.map(function(doctor, index) {
       return {
         title: doctor.profile.first_name + ' ' + doctor.profile.last_name,
         location: {
@@ -49,7 +48,6 @@ class Doctors extends Component {
               isMarkerShown={this.state.isMarkerShown}
               center={{ lat: 45.6318,lng: -122.6716 }}
               zoom={12}
-              onMapMounted={this.handleMapMounted}
               markers={this.state.markers}
               />
           </div>

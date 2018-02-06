@@ -25,7 +25,7 @@ class DoctorSearchForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.fetchDoctors(this.state);
-    this.props.getMarkers();
+    console.log('Form', this.state);
   }
 
   render() {

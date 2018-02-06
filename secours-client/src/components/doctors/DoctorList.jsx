@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import DoctorItem from './DoctorItem';
 import DoctorView from './DoctorView';
@@ -14,17 +14,16 @@ class DoctorList extends React.Component {
       );
     });
 
-
     return (
       <div>
-        <h3>DoctorList</h3>
+        <h3>Doctor List</h3>
         <ul>{linkList}</ul>
         <Route path={`${match.url}/:name`}
           render={ (props) => <DoctorView data= {this.props.doctors} {...props} />}
           />
         </div>
       );
-    }
   }
+}
 
-  export default DoctorList;
+export default DoctorList;

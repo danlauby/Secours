@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const DoctorView = ({ match, data }) => {
-
+const DoctorView = ({ data, match }) => {
   const doctor = data.find(p => `${p.profile.first_name}-${p.profile.last_name}` === match.params.name);
+
 
   let doctorData;
 
@@ -13,7 +13,7 @@ const DoctorView = ({ match, data }) => {
       });
       doctorData =
       <div>
-        <h5 className="mb-1"><strong>{doctor.profile.first_name} {doctor.profile.last_name}</strong> - {doctor.profile.title}</h5>
+        <h5><strong>{doctor.profile.first_name} {doctor.profile.last_name}</strong> - {doctor.profile.title}</h5>
         <img src={doctor.profile.image_url} alt={"Dr." + doctor.profile.first_name + " " + doctor.profile.last_name} />
         <ul>{mappedSpecialties}</ul>
         <p>{doctor.profile.bio}</p>

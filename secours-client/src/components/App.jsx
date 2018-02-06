@@ -11,12 +11,13 @@ import SignupPage from './signup/SignupPage';
 import LoginPage from './login/LoginPage';
 import ShareContentPage from './shareContent/ShareContentPage';
 import FlashMessagesList from './flash/FlashMessagesList';
+import DoctorView from './doctors/DoctorView';
 
 
 
 const App = () => {
   return (
-    <div className="container">
+    <div>
       <NavigationBar />
       <FlashMessagesList />
       <Switch>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/login" component={LoginPage} />
         <Route path="/content" component={requireAuth(ShareContentPage)} />
         <Route path="/doctors" component={requireAuth(Doctors)} />
+        <Route path="/doctor/:name" component={requireAuth(DoctorView)} />
       </Switch>
     </div>
   );

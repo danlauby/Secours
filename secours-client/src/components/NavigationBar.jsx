@@ -36,7 +36,7 @@ class NavigationBar extends React.Component {
     )
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark navbar-full bg-success">
+      <nav className="navbar navbar-expand-lg navbar-dark navbar-full text-light bg-dark">
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/" className="navbar-brand">Secours</Link>
