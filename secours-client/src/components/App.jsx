@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import requireAuth from '../utils/requireAuth';
 
 import Doctors from '../containers/doctors/Doctors';
-// import DoctorList from '../containers/doctors/DoctorList';
+import DoctorView from '../containers/doctors/DoctorView';
 
 import NavigationBar from './NavigationBar';
 import Greeting from './Greeting';
@@ -11,7 +11,6 @@ import SignupPage from './signup/SignupPage';
 import LoginPage from './login/LoginPage';
 import ShareContentPage from './shareContent/ShareContentPage';
 import FlashMessagesList from './flash/FlashMessagesList';
-import DoctorView from './doctors/DoctorView';
 
 
 

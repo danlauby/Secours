@@ -18,16 +18,11 @@ app.use('/api/auth', auth);
 app.use('/api/content', content);
 app.use('/api/doctors', doctors);
 
-// const googleMapsClient = require('@google/maps').createClient({
-//   key: 'AIzaSyDvx6AYlUyLcXbZW96tfy_w0FDaU_AIJ-c',
-//   Promise: Promise
-// });
-
 app.get('/api/get-doctors',function(req, res) {
   var options = {
     uri: 'https://api.betterdoctor.com/2016-03-01/doctors',
     qs: {
-      query: req.query.issue,
+      query: req.query.condition,
       location: '45.6318,-122.6716,20',
       user_location: '45.6318,-122.6716',
       skip: 2,

@@ -1,29 +1,25 @@
 import React from "react";
-import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import DoctorItem from './DoctorItem';
-import DoctorView from './DoctorView';
 
 
-class DoctorList extends React.Component {
-  render() {
-    const { doctors, match } = this.props;
-    const linkList = doctors.map((doctor, index) => {
-      return (
-        <DoctorItem doctor={doctor} match={match} key={index} />
-      );
-    });
-
+const DoctorList = ({ doctors }) => {
+  const linkList = doctors.map((doctor, index) => {
     return (
-      <div>
-        <h3>Doctor List</h3>
-        <ul>{linkList}</ul>
-        <Route path={`${match.url}/:name`}
-          render={ (props) => <DoctorView data= {this.props.doctors} {...props} />}
-          />
-        </div>
-      );
-  }
+      <DoctorItem doctor={doctor} key={index} />
+    );
+  });
+
+  return (
+    <div>
+      <ul>{linkList}</ul>
+    </div>
+  );
+}
+
+DoctorList.propTypes = {
+  doctors: PropTypes.array.isRequired
 }
 
 export default DoctorList;

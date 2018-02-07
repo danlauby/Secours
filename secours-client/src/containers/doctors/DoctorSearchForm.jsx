@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchDoctors } from '../../actions/doctorsActions';
 
-
 import TextFieldGroup from '../../components/common/TextFieldGroup';
 
 
@@ -12,7 +11,8 @@ class DoctorSearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      issue: ''
+      condition: '',
+      placeholder: 'All Doctors'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,19 +34,19 @@ class DoctorSearchForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <TextFieldGroup
             type="text"
-            label="Issue"
+            label="Condition"
             onChange={this.handleChange}
-            name="issue"
-            value={this.state.issue}
-            field="issue"
+            name="condition"
+            value={this.state.condition}
+            placeholder={this.state.placeholder}
+            field="condition"
             />
-
           <div className="form-group">
             <button type="submit" className="btn btn-primary btn-lg">Search Doctors</button>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 

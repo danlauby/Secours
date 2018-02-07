@@ -2,7 +2,7 @@ import axios from "axios";
 import * as types from "./../constants/ActionTypes";
 
 
-export const fetchDoctors = (issue) => {
+export const fetchDoctors = (condition) => {
   let url = '/api/get-doctors';
 
   return (dispatch) => {
@@ -10,7 +10,7 @@ export const fetchDoctors = (issue) => {
       type: types.FETCH_DOCTORS
     });
 
-    axios.get(url, {params: {issue: issue.issue }})
+    axios.get(url, {params: {condition: condition.condition }})
     .then((response) => {
       dispatch({
         type: types.FETCH_DOCTORS_FULFILLED,

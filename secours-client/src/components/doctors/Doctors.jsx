@@ -7,7 +7,6 @@ import Map from '../maps/Map';
 
 
 class Doctors extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,22 +33,24 @@ class Doctors extends Component {
   }
 
   render() {
-    const { doctors, match } = this.props;
-
+    const { doctors } = this.props;
     return (
       <div>
         <DoctorSearchForm getMarkers={this.getMarkers} />
         <div className="row">
           <div className="col-md-4">
-            <DoctorList doctors={doctors} match={match} />
+            <DoctorList doctors={doctors} />
           </div>
           <div className="col-md-8">
-            <Map
-              isMarkerShown={this.state.isMarkerShown}
-              center={{ lat: 45.6318,lng: -122.6716 }}
-              zoom={12}
-              markers={this.state.markers}
-              />
+            {doctors.length ?
+              <Map
+                isMarkerShown={this.state.isMarkerShown}
+                center={{ lat: 45.6318,lng: -122.6716 }}
+                zoom={12}
+                markers={this.state.markers}
+                />
+              : ''
+            }
           </div>
         </div>
       </div>
@@ -58,8 +59,7 @@ class Doctors extends Component {
 }
 
 Doctors.propTypes = {
-  doctors: PropTypes.array.isRequired,
-  match: PropTypes.object.isRequired
+  doctors: PropTypes.array
 }
 
 export default Doctors;
