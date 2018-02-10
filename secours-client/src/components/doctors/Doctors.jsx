@@ -35,7 +35,7 @@ class Doctors extends Component {
   render() {
     const { doctors } = this.props;
     return (
-      <div>
+      <div className="container">
         <DoctorSearchForm getMarkers={this.getMarkers} />
         <div className="row">
           <div className="col-md-4">

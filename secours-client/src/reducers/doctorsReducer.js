@@ -18,7 +18,7 @@ export default function reducer(state = {
       case types.FETCH_DOCTORS_REJECTED: {
         return {
           ...state,
-          ...action.data.entities.doctor,
+          ...action.data.doctor,
           fetching: false,
           error: action.payload
         }

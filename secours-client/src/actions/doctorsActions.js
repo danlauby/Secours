@@ -3,7 +3,7 @@ import * as types from "./../constants/ActionTypes";
 
 
 export const fetchDoctors = (condition) => {
-  let url = '/api/get-doctors';
+  const url = '/api/get-doctors';
 
   return (dispatch) => {
     dispatch({
