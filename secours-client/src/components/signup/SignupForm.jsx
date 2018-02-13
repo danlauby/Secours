@@ -7,7 +7,7 @@ import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 
-const validateInput = (data) => {
+function validateInput(data)  {
   let errors = {};
   if (Validator.isEmpty(data.username)) {
     errors.username = 'This field is required';
@@ -112,7 +112,7 @@ class SignupForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        
+
         <h1>Join Our Community!</h1>
 
         <TextFieldGroup

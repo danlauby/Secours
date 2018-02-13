@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import isEmpty from 'lodash/isEmpty';
-import Validator from 'validator';
 import { login } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import Validator from 'validator';
+import isEmpty from 'lodash/isEmpty';
 
 
-const validateInput = (data) => {
+function validateInput(data)  {
   let errors = {};
   if (Validator.isEmpty(data.identifier)) {
     errors.identifier = 'This field is required';
@@ -86,7 +86,7 @@ class LoginForm extends React.Component {
       />
     <button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button>
       </form>
-    );
+    )
   }
 }
 

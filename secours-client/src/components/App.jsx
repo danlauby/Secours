@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import requireAuth from '../utils/requireAuth';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Doctors from '../containers/doctors/Doctors';
 import DoctorView from '../containers/doctors/DoctorView';
@@ -24,8 +25,8 @@ const App = () => {
         <Route path="/signup" component={SignupPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/content" component={requireAuth(ShareContentPage)} />
-        <Route path="/doctors" component={requireAuth(Doctors)} />
-        <Route path="/doctor/:name" component={requireAuth(DoctorView)} />
+        <Route path="/doctors" component={Doctors} />
+        <Route path="/doctor/:name" component={DoctorView} />
       </Switch>
     </div>
   );

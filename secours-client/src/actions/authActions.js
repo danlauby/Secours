@@ -4,14 +4,14 @@ import jwtDecode from 'jwt-decode';
 import * as types from "./../constants/ActionTypes";
 
 
-export const setCurrentUser = (user) => {
+export function setCurrentUser(user) {
   return {
     type: types.SET_CURRENT_USER,
     user
   };
 }
 
-export const logout = () => {
+export function logout() {
   return dispatch => {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
@@ -19,7 +19,7 @@ export const logout = () => {
   }
 }
 
-export const login = (data) => {
+export function login(data) {
   return dispatch => {
     return axios.post('/api/auth', data).then(res => {
       const token = res.data.token;

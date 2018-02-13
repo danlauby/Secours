@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,IAAK;EACH,gBAAgB,EAAE,OAAkB",
-"sources": ["../scss/App.scss"],
+"mappings": "AAAA,IAAK;EACH,gBAAgB,EAAE,OAAkB;;ACDtC,cAAe;EACb,gBAAgB,EAAE,OAAO",
+"sources": ["../scss/App.scss","../scss/DoctorView.scss"],
 "names": [],
 "file": "index.css"
 }

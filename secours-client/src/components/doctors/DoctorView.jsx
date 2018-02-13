@@ -14,7 +14,6 @@ const DoctorView = ({ doctors, match }) => {
   ))).map((location, index) => {
     return (
       <div key={index} className="col-md-6">
-        <hr />
         <address>
           <strong>{location.name}</strong><br />
           {location.visit_address.street}, {location.visit_address.street2}<br />
@@ -28,17 +27,11 @@ const DoctorView = ({ doctors, match }) => {
 });
 
 return (
-  <div className="container">
-    {doctor ?
-      <div className='row'>
-        <div className="col-md-4">
-          <br />
+  <div className="container-fluid">
+    <div className="row doctor-header">
           <img src={doctor.profile.image_url} alt={"Dr." + doctor.profile.first_name + " " + doctor.profile.last_name} />
-        </div>
-        <br />
-        <div className="col-md-8">
-          <br />
-          <h2><strong>{doctor.profile.first_name} {doctor.profile.last_name}</strong> - {doctor.profile.title}</h2>
+
+          <h2>{doctor.profile.first_name} {doctor.profile.last_name} - <span>{doctor.profile.title}</span></h2>
           <p>Gender: {doctor.profile.gender}</p>
           <p>Specialty:</p>
           <ul>
@@ -58,24 +51,13 @@ return (
                 return <li key={index} id={index}>{language.name}</li>;
                 })}
             </ul>
-
             </div>
-            <hr />
-            <div className="row doctor-bio">
-              <div className="col-md-12">
-                <br />
-                <h3>Bio</h3>
+                <h3>Bio:</h3>
                 <p>{doctor.profile.bio}</p>
-              </div>
-            </div>
-            <div className="row doctor-locations">
-              <br />
-              <h3>Locations</h3>
+
+              <h3>Locations:</h3>
               {locations}
-            </div>
-          </div>
-          : <h2>Doctor not found</h2>
-      }
+
     </div>
   );
 };

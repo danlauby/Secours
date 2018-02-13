@@ -41,7 +41,7 @@ class DoctorSearchForm extends React.Component {
             field="condition"
             />
           <div className="form-group">
-            <button type="submit" className="btn btn-primary btn-lg">Search Doctors</button>
+            <button type="submit" className="btn btn-outline-success">Search Doctors</button>
           </div>
         </form>
       </div>
