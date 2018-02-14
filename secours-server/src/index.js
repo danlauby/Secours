@@ -44,11 +44,5 @@ app.get('/api/get-doctors',function(req, res) {
   });
 });
 
-// googleMapsClient.geocode({
-//   address: '7609 NE Vancouver Mall DR #D032, Vancouver, WA'
-// })
-// .asPromise()
-// .then(response =>  console.log(response.json.results[0].geometry.location))
-// .catch(err => console.log(err));
 
 app.listen(8080, () => console.log('Listening on port 8080...'));

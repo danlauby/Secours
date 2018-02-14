@@ -1,13 +1,14 @@
 import React from 'react';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import timezones from '../../data/timezones';
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 
-function validateInput(data)  {
+function validateInput(data) {
   let errors = {};
   if (Validator.isEmpty(data.username)) {
     errors.username = 'This field is required';
@@ -24,7 +25,7 @@ function validateInput(data)  {
   if (Validator.isEmpty(data.passwordConfirmation)) {
     errors.passwordConfirmation = 'This field is required';
   }
-  if (!Validator.equals(data.password, data.passwordConfirmation)) {
+  if (!Validator.equals(data.password, data. passwordConfirmation)) {
     errors.passwordConfirmation = 'Passwords must match';
   }
   if (Validator.isEmpty(data.timezone)) {
@@ -99,7 +100,7 @@ class SignupForm extends React.Component {
           this.props.history.push('/');
         }
       ).catch(
-        (err) => this.setState({ errors: 'error', isLoading: false })
+        (err) => this.setState({ errors: err.response.data, isLoading: false })
       );﻿
     }
   }
@@ -107,12 +108,11 @@ class SignupForm extends React.Component {
   render() {
     const { errors } = this.state;
     const options = map(timezones, (val, key) => {
-      return (<option key={val} value={val}>{key}</option>);
+        return (<option key={val} value={val}>{key}</option>);
     });
 
     return (
       <form onSubmit={this.handleSubmit}>
-
         <h1>Join Our Community!</h1>
 
         <TextFieldGroup
@@ -122,7 +122,7 @@ class SignupForm extends React.Component {
           checkUserExists={this.checkUserExists}
           value={this.state.username}
           field="username"
-          />
+        />
 
         <TextFieldGroup
           error={errors.email}
@@ -131,7 +131,7 @@ class SignupForm extends React.Component {
           checkUserExists={this.checkUserExists}
           value={this.state.email}
           field="email"
-          />
+        />
 
         <TextFieldGroup
           error={errors.password}
@@ -139,7 +139,7 @@ class SignupForm extends React.Component {
           onChange={this.handleChange}
           value={this.state.password}
           field="password"
-          />
+        />
 
         <TextFieldGroup
           error={errors.passwordConfirmation}
@@ -147,18 +147,18 @@ class SignupForm extends React.Component {
           onChange={this.handleChange}
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
-          />
+        />
 
         <div className="form-group">
-          <label className="control-label">Timezone</label>
+        <label className="control-label">Timezone</label>
           <select
             className="form-control"
             name="timezone"
             onChange={this.handleChange}
             value={this.state.timezone}
-            >
-            <option value="" disabled>Choose Your Timezone</option>
-            {options}
+          >
+          <option value="" disabled>Choose Your Timezone</option>
+          {options}
           </select>
           {errors.timezone && <span className="help-block">{errors.timezone}</span>}
         </div>
@@ -180,4 +180,5 @@ SignupForm.propTypes = {
   isUserExists: PropTypes.func.isRequired
 }
 
-export default SignupForm;
+
+export default withRouter(SignupForm);

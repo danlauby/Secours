@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Row, Col, Jumbotron } from 'reactstrap';
 
 const DoctorView = ({ doctors, match }) => {
 
@@ -13,7 +14,7 @@ const DoctorView = ({ doctors, match }) => {
   index === self.findIndex((practice) => (practice.lat === arr.lat && practice.lon === arr.lon
   ))).map((location, index) => {
     return (
-      <div key={index} className="col-md-6">
+      <Col xs="3" key={index} className="location-card">
         <address>
           <strong>{location.name}</strong><br />
           {location.visit_address.street}, {location.visit_address.street2}<br />
@@ -22,49 +23,62 @@ const DoctorView = ({ doctors, match }) => {
       <p>Distance: {location.distance.toFixed(2)} miles away</p>
       <p>Accepting new patients: {(location.accepts_new_patients === true) ? <span>Yes</span> : <span>No</span>}</p>
     </address>
-  </div>
+  </Col>
 )
 });
 
 return (
-  <div className="container-fluid">
-    <div className="row doctor-header">
-          <img src={doctor.profile.image_url} alt={"Dr." + doctor.profile.first_name + " " + doctor.profile.last_name} />
+  <div>
+    <div className="doctor-header">
+          <Row>
+            <Col xs="4" className="doctor-img">
+              <img src={doctor.profile.image_url} alt={"Dr." + doctor.profile.first_name + " " + doctor.profile.last_name} />
+            </Col>
+            <Col xs="8" className="doctor-stats">
+              <h2>{doctor.profile.first_name} {doctor.profile.last_name} - <span>{doctor.profile.title}</span></h2>
+              <p>Gender: {doctor.profile.gender}</p>
+              <p>Specialty:
+                {Object.entries(doctor.specialties).map(([index, specialty]) => {
+                  return <span key={index} id={index}>{specialty.actors}</span>;
+                  })}</p>
+              <p>Licenced in:
+                {Object.entries(doctor.licenses).map(([index, license]) => {
+                  return <span key={index} id={index}>{license.state}</span>;
+                })}</p>
+              <p>Languages:
+                {Object.entries(doctor.profile.languages).map(([index, language]) => {
+                  return <span key={index} id={index}>{language.name}</span>;
+                })}</p>
+            </Col>
+          </Row>
+      </div>
 
-          <h2>{doctor.profile.first_name} {doctor.profile.last_name} - <span>{doctor.profile.title}</span></h2>
-          <p>Gender: {doctor.profile.gender}</p>
-          <p>Specialty:</p>
-          <ul>
-            {Object.entries(doctor.specialties).map(([index, specialty]) => {
-              return <li key={index} id={index}>{specialty.actors}</li>;
-              })}
-          </ul>
-          <p>Licenced in:</p>
-          <ul>
-            {Object.entries(doctor.licenses).map(([index, license]) => {
-              return <li key={index} id={index}>{license.state}</li>;
-              })}
-          </ul>
-            <p>Languages:</p>
-            <ul>
-              {Object.entries(doctor.profile.languages).map(([index, language]) => {
-                return <li key={index} id={index}>{language.name}</li>;
-                })}
-            </ul>
-            </div>
-                <h3>Bio:</h3>
-                <p>{doctor.profile.bio}</p>
 
-              <h3>Locations:</h3>
+        <Row className="doctor-bio">
+          <Col>
+            <h3>Bio:</h3>
+            <p>{doctor.profile.bio}</p>
+          </Col>
+        </Row>
+        <div className="doctor-locations">
+        <Row>
+          <Col>
+            <h3>Locations:</h3>
+            <Row>
               {locations}
+            </Row>
+
+          </Col>
+        </Row>
+      </div>
 
     </div>
-  );
-};
+      );
+    };
 
-DoctorView.propTypes = {
-  doctors: PropTypes.array.isRequired,
-  match: PropTypes.object.isRequired
-}
+    DoctorView.propTypes = {
+      doctors: PropTypes.array.isRequired,
+      match: PropTypes.object.isRequired
+    }
 
-export default DoctorView;
+    export default DoctorView;

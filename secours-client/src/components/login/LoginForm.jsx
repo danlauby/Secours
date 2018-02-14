@@ -37,25 +37,25 @@ class LoginForm extends React.Component {
 
   isValid() {
     const { errors, isValid } = validateInput(this.state);
+
     if (!isValid) {
       this.setState({ errors });
     }
+
     return isValid;
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
-      this.props.login(this.state).then(
-        () => {
-          this.context.router.history.push('/');
-        }
-      ).catch(
-        (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
-      );﻿
-    }
+  handleSubmit(e){
+  e.preventDefault();
+
+  if (this.isValid()) {
+   this.setState({ errors: {}, isLoading: true });
+   this.props.login(this.state).then(
+    (res) => this.context.router.history.push('/'),
+    (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+   );
   }
+ }﻿
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -67,24 +67,28 @@ class LoginForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <h1>Login</h1>
 
-      { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+        { errors.form ? <div className="alert alert-danger">{errors.form}</div> : '' }
 
-      <TextFieldGroup
-        field="identifier"
-        label="Username / Email"
-        value={identifier}
-        error={errors.identifier}
-        onChange={this.handleChange}
-      />
-      <TextFieldGroup
-        field="password"
-        label="Password"
-        value={password}
-        error={errors.password}
-        onChange={this.handleChange}
-        type="password"
-      />
-    <button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button>
+        <TextFieldGroup
+          field="identifier"
+          label="Username / Email"
+          onChange={this.handleChange}
+          name="identifier"
+          value={identifier}
+          error={errors.identifier}
+          />
+
+        <TextFieldGroup
+          field="password"
+          label="Password"
+          value={password}
+          name="password"
+          error={errors.password}
+          onChange={this.handleChange}
+          type="password"
+          />
+
+        <button className="btn btn-primary btn-lg">Login</button>
       </form>
     )
   }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchDoctors } from '../../actions/doctorsActions';
 
+import { Button } from 'reactstrap';
 import TextFieldGroup from '../../components/common/TextFieldGroup';
 
 
@@ -19,6 +20,7 @@ class DoctorSearchForm extends React.Component {
   }
 
   handleChange(e) {
+    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -41,7 +43,8 @@ class DoctorSearchForm extends React.Component {
             field="condition"
             />
           <div className="form-group">
-            <button type="submit" className="btn btn-outline-success">Search Doctors</button>
+            <Button type="submit" outline color="primary">Search Doctors</Button>{' '}
+
           </div>
         </form>
       </div>
