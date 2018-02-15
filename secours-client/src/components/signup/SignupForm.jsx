@@ -54,6 +54,7 @@ class SignupForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkUserExists = this.checkUserExists.bind(this);
+    this.isValid = this.isValid.bind(this);
   }
 
   handleChange(e) {
@@ -62,9 +63,11 @@ class SignupForm extends React.Component {
 
   isValid() {
     const { errors, isValid } = validateInput(this.state);
+
     if (!isValid) {
       this.setState({ errors });
     }
+
     return isValid;
   }
 
@@ -90,18 +93,17 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
+      // this.setState({ errors: {}, isValid: true });
       this.props.userSignupRequest(this.state).then(
         () => {
           this.props.addFlashMessage({
             type: 'success',
-            text: 'You have signed up successfully. Welcome!'
+            text: 'You signed up successfully. Welcome!'
           });
-          this.props.history.push('/');
-        }
-      ).catch(
+          this.context.router.history.push('/');
+        },
         (err) => this.setState({ errors: err.response.data, isLoading: false })
-      );﻿
+      );
     }
   }
 
@@ -118,6 +120,7 @@ class SignupForm extends React.Component {
         <TextFieldGroup
           error={errors.username}
           label="Username"
+          name="username"
           onChange={this.handleChange}
           checkUserExists={this.checkUserExists}
           value={this.state.username}
@@ -127,6 +130,7 @@ class SignupForm extends React.Component {
         <TextFieldGroup
           error={errors.email}
           label="Email"
+          name="email"
           onChange={this.handleChange}
           checkUserExists={this.checkUserExists}
           value={this.state.email}
@@ -136,6 +140,7 @@ class SignupForm extends React.Component {
         <TextFieldGroup
           error={errors.password}
           label="Password"
+          name="password"
           onChange={this.handleChange}
           value={this.state.password}
           field="password"
@@ -144,6 +149,7 @@ class SignupForm extends React.Component {
         <TextFieldGroup
           error={errors.passwordConfirmation}
           label="Password Confirmation"
+          name="passwordConfirmation"
           onChange={this.handleChange}
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
@@ -160,7 +166,7 @@ class SignupForm extends React.Component {
           <option value="" disabled>Choose Your Timezone</option>
           {options}
           </select>
-          {errors.timezone && <span className="help-block">{errors.timezone}</span>}
+          {errors.timezone ? <span className="help-block">{errors.timezone}</span> : ''}
         </div>
 
 
@@ -180,5 +186,8 @@ SignupForm.propTypes = {
   isUserExists: PropTypes.func.isRequired
 }
 
+SignupForm.contextTypes = {
+  router: PropTypes.object.isRequired
+}
 
 export default withRouter(SignupForm);

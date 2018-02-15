@@ -19,9 +19,9 @@ const DoctorView = ({ doctors, match }) => {
           <strong>{location.name}</strong><br />
           {location.visit_address.street}, {location.visit_address.street2}<br />
         {location.visit_address.city}, {location.visit_address.state} {location.visit_address.zip}<br />
-      <a href={location.website}>{location.website}</a>
       <p>Distance: {location.distance.toFixed(2)} miles away</p>
       <p>Accepting new patients: {(location.accepts_new_patients === true) ? <span>Yes</span> : <span>No</span>}</p>
+      <a href={location.website}>{location.website}</a>
     </address>
   </Col>
 )

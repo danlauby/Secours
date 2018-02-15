@@ -1,10 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import isEmpty from 'lodash/isEmpty';
+import Validator from 'validator';
+
 import { login } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
-import Validator from 'validator';
-import isEmpty from 'lodash/isEmpty';
 
 
 function validateInput(data)  {
@@ -37,22 +39,19 @@ class LoginForm extends React.Component {
 
   isValid() {
     const { errors, isValid } = validateInput(this.state);
-
     if (!isValid) {
       this.setState({ errors });
     }
-
     return isValid;
   }
 
   handleSubmit(e){
   e.preventDefault();
-
   if (this.isValid()) {
    this.setState({ errors: {}, isLoading: true });
    this.props.login(this.state).then(
-    (res) => this.context.router.history.push('/'),
-    (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+    (res) => this.props.history.push('/'),
+    (err) => this.setState({errors: err.response.data, isLoading: false})
    );
   }
  }﻿
@@ -98,8 +97,4 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired
 }
 
-LoginForm.contextTypes = {
-  router: PropTypes.object.isRequired
-}
-
-export default connect(null, { login })(LoginForm);
+export default withRouter(connect(null, { login })(LoginForm));
