@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchDoctors } from '../../actions/doctorsActions';
-
 import { Button } from 'reactstrap';
+
 import TextFieldGroup from '../../components/common/TextFieldGroup';
+
 
 
 class DoctorSearchForm extends React.Component {
@@ -15,18 +16,21 @@ class DoctorSearchForm extends React.Component {
       condition: '',
       placeholder: 'All Doctors'
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    console.log(e.target.value);
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    // if(this.state.address) {
     this.props.fetchDoctors(this.state);
+    // }
   }
 
   render() {
@@ -43,17 +47,16 @@ class DoctorSearchForm extends React.Component {
             field="condition"
             />
           <div className="form-group">
-            <Button type="submit" outline color="primary">Search Doctors</Button>{' '}
-
-          </div>
-        </form>
-      </div>
-    );
+            <Button type="submit" outline color="info">Search Doctors</Button>{' '}
+            </div>
+          </form>
+        </div>
+      );
+    }
   }
-}
 
-DoctorSearchForm.propTypes = {
-  fetchDoctors: PropTypes.func.isRequired
-}
+  DoctorSearchForm.propTypes = {
+    fetchDoctors: PropTypes.func.isRequired
+  }
 
-export default connect(null, { fetchDoctors })(DoctorSearchForm);
+  export default (connect(null, { fetchDoctors })(DoctorSearchForm));

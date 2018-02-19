@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAe;EACb,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAE,OAAO;;AAGhB,UAAW;EACT,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC",
+"sources": ["../scss/doctors.scss"],
+"names": [],
+"file": "doctors.css"
+}

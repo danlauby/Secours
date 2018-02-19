@@ -25,6 +25,15 @@
   font-family: sans-serif;
   padding: 100px 100px 80px 100px; }
 
+.doctor-search {
+  padding: 20px;
+  background-color: #484948;
+  color: #d1d5d6; }
+
+.map.col-8 {
+  padding: 0;
+  margin: 0; }
+
 .doctor-header {
   width: 100%;
   height: 100%;

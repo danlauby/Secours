@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Container, Row, Col, Jumbotron } from 'reactstrap';
 
 import DoctorSearchForm from '../../containers/doctors/DoctorSearchForm';
 import DoctorList from './DoctorList';
-import Map from '../maps/Map';
+import MapDisplay from '../maps/MapDisplay';
+import GeoLocationSearchForm from '../maps/GeoLocationSearchForm';
 
 
 class Doctors extends Component {
@@ -33,17 +35,22 @@ class Doctors extends Component {
   }
 
   render() {
-    const { doctors } = this.props;
+    const { doctors, fetchDoctors } = this.props;
     return (
-      <div className="container">
-        <DoctorSearchForm getMarkers={this.getMarkers} />
-        <div className="row">
-          <div className="col-md-4">
-            <DoctorList doctors={doctors} />
-          </div>
-          <div className="col-md-8">
+      <Container fluid>
+        <Row className="doctor-search">
+          <Col xs={{ size: 6, offset: 3 }}>
+            <GeoLocationSearchForm />
+            <DoctorSearchForm getMarkers={this.getMarkers} />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="4">
+            <DoctorList doctors={doctors} fetchDoctors={fetchDoctors}/>
+          </Col>
+          <Col xs="8" className="map">
             {doctors.length ?
-              <Map
+              <MapDisplay
                 isMarkerShown={this.state.isMarkerShown}
                 center={{ lat: 45.6318,lng: -122.6716 }}
                 zoom={12}
@@ -51,9 +58,9 @@ class Doctors extends Component {
                 />
               : ''
             }
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

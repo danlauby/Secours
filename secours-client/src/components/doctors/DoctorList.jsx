@@ -1,21 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import DoctorItem from './DoctorItem';
 
 
-const DoctorList = ({ doctors }) => {
-  const linkList = doctors.map((doctor, index) => {
-    return (
-      <DoctorItem doctor={doctor} key={index} />
-    );
-  });
+class DoctorList extends Component {
 
-  return (
-    <div>
-      <ul>{linkList}</ul>
-    </div>
-  );
+  render() {
+    const { doctors, fetchDoctors } = this.props;
+    const linkList = doctors.map((doctor, index) => {
+      return (
+        <DoctorItem doctor={doctor} key={index} />
+      );
+    });
+    return (
+      <div>
+        {linkList}
+      </div>
+    );
+
+  }
 }
 
 DoctorList.propTypes = {
