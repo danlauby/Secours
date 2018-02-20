@@ -1,15 +1,18 @@
 import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 import LoginForm from './LoginForm';
 
 
 const LoginPage = () => {
     return (
-      <div className="row">
-        <div className="col-md-4 offset-md-4">
-          <LoginForm />
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col xs={{ size: 6, offset: 4 }}>
+            <LoginForm />
+          </Col>
+        </Row>
+      </Container>
     )
 }
 

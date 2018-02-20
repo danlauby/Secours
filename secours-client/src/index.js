@@ -10,6 +10,7 @@ import logger from 'redux-logger';
 import rootReducer from './rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/authActions';
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/css/index.css';
 
 import App from './components/App';

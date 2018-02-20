@@ -2,9 +2,9 @@ import React from 'react';
 import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import timezones from '../../data/timezones';
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
+
 import TextFieldGroup from '../common/TextFieldGroup';
 
 
@@ -28,8 +28,8 @@ function validateInput(data) {
   if (!Validator.equals(data.password, data. passwordConfirmation)) {
     errors.passwordConfirmation = 'Passwords must match';
   }
-  if (Validator.isEmpty(data.timezone)) {
-    errors.timezone = 'This field is required';
+  if (Validator.isEmpty(data.zipcode)) {
+    errors.zipcode = 'This field is required';
   }
   return {
     errors,
@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       passwordConfirmation: '',
-      timezone: '',
+      zipcode: '',
       errors: {},
       isLoading: false,
       invalid: false
@@ -109,9 +109,6 @@ class SignupForm extends React.Component {
 
   render() {
     const { errors } = this.state;
-    const options = map(timezones, (val, key) => {
-        return (<option key={val} value={val}>{key}</option>);
-    });
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -155,19 +152,15 @@ class SignupForm extends React.Component {
           field="passwordConfirmation"
         />
 
-        <div className="form-group">
-        <label className="control-label">Timezone</label>
-          <select
-            className="form-control"
-            name="timezone"
-            onChange={this.handleChange}
-            value={this.state.timezone}
-          >
-          <option value="" disabled>Choose Your Timezone</option>
-          {options}
-          </select>
-          {errors.timezone ? <span className="help-block">{errors.timezone}</span> : ''}
-        </div>
+        <TextFieldGroup
+          error={errors.zipcode}
+          label="Zip/Postal Code"
+          name="zipcode"
+          onChange={this.handleChange}
+          checkUserExists={this.checkUserExists}
+          value={this.state.zipcode}
+          field="zipcode"
+        />
 
 
         <div className="form-group">

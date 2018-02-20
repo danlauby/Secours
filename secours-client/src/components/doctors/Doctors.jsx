@@ -39,9 +39,12 @@ class Doctors extends Component {
     return (
       <Container fluid>
         <Row className="doctor-search">
-          <Col xs={{ size: 6, offset: 3 }}>
-            <GeoLocationSearchForm />
+          <Col xs={{ size: 6 }}>
             <DoctorSearchForm getMarkers={this.getMarkers} />
+          </Col>
+          <Col xs={{ size: 6 }}>
+            <label>Location</label>
+            <GeoLocationSearchForm />
           </Col>
         </Row>
         <Row>

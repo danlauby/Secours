@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('username').notNullable().unique();
     table.string('email').notNullable().unique();
-    table.string('timezone').notNullable().unique();
+    table.string('zipcode').notNullable().unique();
     table.string('password_digest').notNullable().unique();
     table.timestamps();
   });
