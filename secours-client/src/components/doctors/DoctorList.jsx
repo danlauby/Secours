@@ -10,7 +10,7 @@ class DoctorList extends Component {
   renderRow = ({ index, isScrolling, key, style}) => {
     const { doctors } = this.props;
     const listStyle = {
-      width: '25px',
+      width: '40px',
       borderRadius: '50%',
       marginRight: '5px'
     };

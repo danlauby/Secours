@@ -1,5 +1,4 @@
 import React from 'react';
-import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import Validator from 'validator';

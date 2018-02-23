@@ -28,6 +28,7 @@ class DoctorSearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.props.userLocation);
     // if(this.state.address) {
     this.props.fetchDoctors(this.state);
     // }

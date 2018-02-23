@@ -8,7 +8,7 @@ const LoginPage = () => {
     return (
       <Container>
         <Row>
-          <Col xs={{ size: 6, offset: 4 }}>
+          <Col xs={{ size: 4, offset: 4 }}>
             <LoginForm />
           </Col>
         </Row>

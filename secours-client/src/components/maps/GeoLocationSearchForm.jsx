@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
@@ -20,7 +21,7 @@ const renderFooter = () => (
 
 // const cssClasses = {
 //   root: 'form-Geoup',
-//   input: 'Demo__search-input',
+//   input: 'Doctor_Search',
 //   autocompleteContainer: 'Demo__autocomplete-container',
 // }
 
@@ -58,14 +59,14 @@ class GeoLocationSearchForm extends Component {
       .then(({ lat, lng }) => {
         console.log('Geocode Success', { lat, lng })
         this.setState({
-          geocodeResults: this.renderGeocodeSuccess(lat, lng),
+          geocodeResults: lat, lng,
           loading: false,
         })
       })
       .catch(error => {
         console.log('Geocode Error', error)
         this.setState({
-          geocodeResults: this.renderGeocodeFailure(error),
+          geocodeResults: error,
           loading: false,
         })
       })
@@ -78,24 +79,24 @@ class GeoLocationSearchForm extends Component {
     })
   }
 
-  renderGeocodeFailure(err) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        <strong>Error!</strong> {err}
-      </div>
-    )
-  }
-
-  renderGeocodeSuccess(lat, lng) {
-    return (
-      <div className="alert alert-success" role="alert">
-        <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
-        <strong>
-          {lat}, {lng}
-        </strong>
-      </div>
-    )
-  }
+  // renderGeocodeFailure(err) {
+  //   return (
+  //     <div className="alert alert-danger" role="alert">
+  //       <strong>Error!</strong> {err}
+  //     </div>
+  //   )
+  // }
+  //
+  // renderGeocodeSuccess(lat, lng) {
+  //   return (
+  //     <div className="alert alert-success" role="alert">
+  //       <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
+  //       <strong>
+  //         {lat}, {lng}
+  //       </strong>
+  //     </div>
+  //   )
+  // }
 
   render() {
     const inputProps = {
@@ -139,4 +140,4 @@ class GeoLocationSearchForm extends Component {
   }
 }
 
-export default GeoLocationSearchForm;
+export default connect()(GeoLocationSearchForm);

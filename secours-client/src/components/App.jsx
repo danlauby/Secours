@@ -25,8 +25,8 @@ const App = () => {
         <Route path="/signup" component={SignupPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/content" component={requireAuth(ShareContentPage)} />
-        <Route path="/doctors" component={Doctors} />
-        <Route path="/doctor/:name" component={DoctorView} />
+        <Route path="/doctors" component={requireAuth(Doctors)} />
+        <Route path="/doctor/:name" component={requireAuth(DoctorView)} />
       </Switch>
     </div>
   );
