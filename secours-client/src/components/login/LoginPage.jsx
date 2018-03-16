@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-import LoginForm from './LoginForm';
+import LoginForm from '../../containers/login/LoginForm';
 
 
 const LoginPage = () => {

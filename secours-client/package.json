@@ -15,6 +15,8 @@
     "react-geolocated": "^2.3.0",
     "react-geosuggest": "^2.7.0",
     "react-google-maps": "^9.4.5",
+    "react-google-maps-loader": "^4.1.0",
+    "react-google-places-suggest": "^3.3.1",
     "react-places-autocomplete": "^6.1.2",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

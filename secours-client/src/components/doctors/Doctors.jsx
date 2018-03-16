@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Jumbotron } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import DoctorSearchForm from '../../containers/doctors/DoctorSearchForm';
 import DoctorList from './DoctorList';
 import MapDisplay from '../maps/MapDisplay';
-import GeoLocationSearchForm from '../maps/GeoLocationSearchForm';
+import GeoLocationSearchForm from '../../containers/maps/GeoLocationSearchForm';
 
 
 class Doctors extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +36,7 @@ class Doctors extends Component {
   }
 
   render() {
-    const { doctors, fetchDoctors } = this.props;
+    const { doctors, fetchDoctors, userLocation } = this.props;
     return (
       <Container fluid>
         <Row className="doctor-search">
@@ -55,7 +56,7 @@ class Doctors extends Component {
             {doctors.length ?
               <MapDisplay
                 isMarkerShown={this.state.isMarkerShown}
-                center={{ lat: 45.6318,lng: -122.6716 }}
+                center={{ lat: userLocation.lat,lng: userLocation.lng }}
                 zoom={12}
                 markers={this.state.markers}
                 />

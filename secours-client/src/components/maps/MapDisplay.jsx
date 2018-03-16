@@ -4,7 +4,7 @@ import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 
-export default Map = compose(
+const MapDisplay = compose(
   withProps({
     googleMapURL:
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx6AYlUyLcXbZW96tfy_w0FDaU_AIJ-c&v=3.exp&libraries=geometry,drawing,places",
@@ -15,7 +15,7 @@ export default Map = compose(
   withScriptjs,
   withGoogleMap
   )(props => (
-    <GoogleMap defaultZoom={9} defaultCenter={{ lat: 45.6318,lng: -122.6716 }}>
+    <GoogleMap defaultZoom={9} defaultCenter={props.center}>
       {props.markers.map((doctor, index) => {
         const marker = {
           position: { lat: doctor.location.lat, lng: doctor.location.lng },
@@ -27,6 +27,8 @@ export default Map = compose(
   ));
 
 
-Map.propTypes = {
+MapDisplay.propTypes = {
   markers: PropTypes.array.isRequired
 }
+
+export default MapDisplay;

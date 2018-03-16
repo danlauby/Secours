@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteFlashMessage } from '../../actions/flashMessages';
 
-import FlashMessage from './FlashMessage';
+import FlashMessage from '../../components/flash/FlashMessage';
 
 
 class FlashMessagesList extends React.Component {

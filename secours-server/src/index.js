@@ -19,12 +19,14 @@ app.use('/api/content', content);
 app.use('/api/doctors', doctors);
 
 app.get('/api/get-doctors',function(req, res) {
+  let coords = req.query.lat + ',' + req.query.lng;
+  console.log('Server Coords', coords);
   var options = {
     uri: 'https://api.betterdoctor.com/2016-03-01/doctors',
     qs: {
       query: req.query.condition,
-      location: '45.6318,-122.6716,20',
-      user_location: '45.6318,-122.6716',
+      location: coords + ',' + 20,
+      user_location: coords,
       skip: 2,
       limit: 10,
       user_key: process.env.BD_KEY,
@@ -46,3 +48,7 @@ app.get('/api/get-doctors',function(req, res) {
 
 
 app.listen(8080, () => console.log('Listening on port 8080...'));
+
+
+// location: '45.6318,-122.6716,20',
+// user_location: '45.6318,-122.6716',

@@ -6,7 +6,8 @@ import Doctors from '../../components/doctors/Doctors';
 
 const mapStateToProps = (state) => {
   return {
-    doctors: state.doctors.doctors
+    doctors: state.doctors.doctors,
+    userLocation: state.geoLocation.coords
   };
 };
 

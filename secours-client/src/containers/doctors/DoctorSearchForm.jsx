@@ -1,63 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { fetchDoctors } from '../../actions/doctorsActions';
-import { Button } from 'reactstrap';
-
-import TextFieldGroup from '../../components/common/TextFieldGroup';
 
 
+class DoctorSearchForm extends Component {
 
-class DoctorSearchForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      condition: '',
-      placeholder: 'All Doctors'
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+  searchDoctorsSubmit = (values) => {
+    this.props.fetchDoctors(values, this.props.userLocation);
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log(this.props.userLocation);
-    // if(this.state.address) {
-    this.props.fetchDoctors(this.state);
-    // }
-  }
+  renderInput = ({ input, meta, label, type }) =>
+  <div>
+    <Label>{label}</Label>
+    <Input type={type} {...input} valid={meta.error && meta.touched ? false : null }/>
+    <FormFeedback >
+      {meta.error && meta.touched ? <span>{meta.error}</span> : ''}
+    </FormFeedback>
+  </div>
 
   render() {
+    const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <TextFieldGroup
-            type="text"
-            label="Condition"
-            onChange={this.handleChange}
-            name="condition"
-            value={this.state.condition}
-            placeholder={this.state.placeholder}
-            field="condition"
-            />
-          <div className="form-group">
-            <Button type="submit" outline color="info">Search Doctors</Button>{' '}
-            </div>
-          </form>
-        </div>
-      );
-    }
-  }
+      <Form onSubmit={handleSubmit(this.searchDoctorsSubmit.bind(this))}>
+        <FormGroup>
+          <Field name="condition" type="text" label="Condition" component={this.renderInput} />
+        </FormGroup>
 
-  DoctorSearchForm.propTypes = {
-    fetchDoctors: PropTypes.func.isRequired
+        <Button type="submit" outline color="info">Search Doctors</Button>
+      </Form>
+    );
   }
+}
 
-  export default (connect(null, { fetchDoctors })(DoctorSearchForm));
+const validate = values => {
+  const errors = {};
+  if(!values.condition) {
+    errors.condition = 'Condition is Required';
+  }
+  return errors;
+}
+
+const form = reduxForm({
+  form: 'SearchDoctorsForm',
+  validate
+});
+
+function mapStateToProps(state) {
+  return {
+    userLocation: state.geoLocation.coords
+  }
+}
+
+DoctorSearchForm.propTypes = {
+  fetchDoctors: PropTypes.func.isRequired,
+  userLocation: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired
+}
+
+
+export default withRouter(connect(mapStateToProps, { fetchDoctors })(form(DoctorSearchForm)));

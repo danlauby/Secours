@@ -3,19 +3,12 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { login } from '../../actions/authActions';
 import { addFlashMessage } from '../../actions/flashMessages';
 
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: {},
-      isLoading: false
-    }
-  }
 
   loginSubmit = (values) => {
     this.props.login(values).then(
@@ -25,15 +18,14 @@ class LoginForm extends Component {
           text: `Welcome Back ${values.identifier}!`
         });
         this.props.history.push('/');
-      },
-      (err) => this.setState({ errors: err.response.data, isLoading: false })
+      }
     );
   }
 
   renderInput = ({ input, meta, label, type }) =>
   <div>
     <Label>{label}</Label>
-    <Input type={type} {...input} valid={meta.error && meta.touched ? false : '' }/>
+    <Input type={type} {...input} valid={meta.error && meta.touched ? false : null }/>
     <FormFeedback >
       {meta.error && meta.touched ? <span>{meta.error}</span> : ''}
     </FormFeedback>
@@ -72,6 +64,13 @@ const form = reduxForm({
   form: 'LoginForm',
   validate
 });
+
+LoginForm.propTypes = {
+  login: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
+}
 
 
 export default withRouter(connect(null, { login, addFlashMessage })(form(LoginForm)));

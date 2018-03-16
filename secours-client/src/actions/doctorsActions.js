@@ -2,15 +2,14 @@ import axios from "axios";
 import * as types from "./../constants/ActionTypes";
 
 
-export const fetchDoctors = (condition) => {
+export const fetchDoctors = (condition, coords) => {
   const url = '/api/get-doctors';
-
   return (dispatch) => {
     dispatch({
       type: types.FETCH_DOCTORS
     });
 
-    axios.get(url, {params: {condition: condition.condition }})
+    axios.get(url, {params: {condition: condition.condition, lat: coords.lat, lng: coords.lng }})
     .then((response) => {
       dispatch({
         type: types.FETCH_DOCTORS_FULFILLED,

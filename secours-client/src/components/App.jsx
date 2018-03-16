@@ -11,7 +11,7 @@ import Greeting from './Greeting';
 import SignupPage from './signup/SignupPage';
 import LoginPage from './login/LoginPage';
 import ShareContentPage from './shareContent/ShareContentPage';
-import FlashMessagesList from './flash/FlashMessagesList';
+import FlashMessagesList from '../containers/flash/FlashMessagesList';
 
 
 

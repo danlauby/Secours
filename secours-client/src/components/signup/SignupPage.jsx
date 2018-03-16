@@ -34,3 +34,39 @@ SignupPage.propTypes = {
 }
 
 export default connect(null, { userSignupRequest, addFlashMessage, isUserExists })(SignupPage);
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import SignupForm from '../../containers/SignupForm';
+// // import PropTypes from 'prop-types';
+// // import { connect } from 'react-redux';
+// import { Container, Row, Col } from 'reactstrap';
+// // import { userSignupRequest, validateUser } from '../../actions/signupActions';
+//
+// // import SignupForm from './SignupForm';
+//
+//
+// class SignupPage extends React.Component {
+//   render() {
+//     return (
+//       <Container>
+//         <Row>
+//           <Col xs={{ size: 4, offset: 4 }}>
+//             <SignupForm />
+//           </Col>
+//         </Row>
+//       </Container>
+//     );
+//   }
+// }
+//
+//
+//
+// export default SignupPage;
+// // export default connect(null, { addFlashMessage })(SignupPage);
