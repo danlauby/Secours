@@ -9,7 +9,7 @@ import GeoLocationSearchForm from '../../containers/maps/GeoLocationSearchForm';
 
 
 class Doctors extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -48,22 +48,29 @@ class Doctors extends Component {
             <GeoLocationSearchForm />
           </Col>
         </Row>
+        {doctors.length ?
         <Row>
           <Col xs="4">
             <DoctorList doctors={doctors} fetchDoctors={fetchDoctors}/>
           </Col>
-          <Col xs="8" className="map">
-            {doctors.length ?
+              <Col xs="8" className="map">
               <MapDisplay
                 isMarkerShown={this.state.isMarkerShown}
                 center={{ lat: userLocation.lat,lng: userLocation.lng }}
                 zoom={12}
                 markers={this.state.markers}
                 />
-              : ''
+            </Col>
+          </Row>
+              : <div className="doctor-container">
+                <img src="https://wallpaperstock.net/wallpapers/thumbs1/40189.jpg" alt="Norway" style={{ width: `100%` }} />
+                <div className="hero-container">
+                  <div className="text-block">
+                    <h1>Find a Doctor near you</h1>
+                  </div>
+                  </div>
+                </div>
             }
-          </Col>
-        </Row>
       </Container>
     );
   }

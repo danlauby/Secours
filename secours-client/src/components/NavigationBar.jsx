@@ -79,8 +79,8 @@ import {
       )
 
       return (
-        <div>
-          <Navbar color="dark" dark expand="md">
+        <div className="main-nav">
+          <Navbar dark expand="md">
             <NavbarBrand href="/">Secours</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>

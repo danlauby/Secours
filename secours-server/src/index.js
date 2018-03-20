@@ -20,15 +20,14 @@ app.use('/api/doctors', doctors);
 
 app.get('/api/get-doctors',function(req, res) {
   let coords = req.query.lat + ',' + req.query.lng;
-  console.log('Server Coords', coords);
   var options = {
     uri: 'https://api.betterdoctor.com/2016-03-01/doctors',
     qs: {
       query: req.query.condition,
-      location: coords + ',' + 20,
+      location: coords + ',' + 100,
       user_location: coords,
       skip: 2,
-      limit: 10,
+      limit: 50,
       user_key: process.env.BD_KEY,
     },
     headers: {

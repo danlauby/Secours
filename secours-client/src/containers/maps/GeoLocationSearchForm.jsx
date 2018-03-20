@@ -10,7 +10,7 @@ const renderSuggestion = ({ formattedSuggestion }) => (
     <strong>{formattedSuggestion.mainText}</strong>{' '}
     <small className="text-muted">{formattedSuggestion.secondaryText}</small>
   </div>
-)
+);
 
 const renderFooter = () => (
   <div className="Demo__dropdown-footer">
@@ -18,7 +18,7 @@ const renderFooter = () => (
       Google
     </div>
   </div>
-)
+);
 
 // const cssClasses = {
 //   root: 'form-Geoup',
@@ -32,7 +32,7 @@ const onError = (status, clearSuggestions) => {
   console.log(
     'Error happened while fetching suggestions from Google Maps API',
     status
-  )
+  );
   clearSuggestions();
 }
 
@@ -59,15 +59,15 @@ class GeoLocationSearchForm extends Component {
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         this.props.setGeoLocation({ lat, lng });
-
         this.setState({
-          geocodeResults: [lat, lng],
+          // geocodeResults: this.renderGeocodeSuccess(lat, lng),
           loading: false,
         })
       })
       .catch(error => {
+        console.log('Geocode Error', error); // eslint-disable-line no-console
         this.setState({
-          geocodeResults: error,
+          geocodeResults: this.renderGeocodeFailure(error),
           loading: false,
         })
       })
@@ -83,37 +83,46 @@ class GeoLocationSearchForm extends Component {
   renderGeocodeFailure(err) {
     return (
       <div className="alert alert-danger" role="alert">
-        <strong>Error!</strong> {err}
+        <strong>There was an error, no suggestions found</strong> {err}
       </div>
-    )
+    );
   }
 
-  renderGeocodeSuccess(lat, lng) {
-    return (
-      <div className="alert alert-success" role="alert">
-        <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
-        <strong>
-          {lat}, {lng}
-        </strong>
-      </div>
-    )
+  // renderGeocodeSuccess(lat, lng) {
+  //   return (
+  //     <div className="alert alert-success" role="alert">
+  //       <strong>Success!</strong> Geocoder found latitude and longitude:{' '}
+  //       <strong>
+  //         {lat}, {lng}
+  //       </strong>
+  //     </div>
+  //   )
+  // }
+
+  displayError() {
+    this.setState({
+      geocodeResults: 'Please enter your location',
+      loading: true,
+    });
   }
-  // onBlur: () => {
-  //   console.log('Blur event!')
-  // },
-  // onFocus: () => {
-  //   console.log('Focused!')
-  // },
 
   render() {
     const inputProps = {
       type: 'text',
       value: this.state.address,
       onChange: this.handleChange,
-      autoFocus: true,
+      autoFocus: false,
       placeholder: 'Your Location',
       name: 'Doctor_Search',
       id: 'geo-location-input',
+      onBlur: () => {
+        if (!this.state.address) {
+          this.displayError();
+        }
+      },
+      // onFocus: () => {
+      //   console.log('Focused!')
+      // }
     }
 
     return (
@@ -139,6 +148,7 @@ class GeoLocationSearchForm extends Component {
     )
   }
 }
+
 
 function mapStateToProps(state) {
   return {

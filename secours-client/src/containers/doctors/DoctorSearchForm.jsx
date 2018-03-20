@@ -13,40 +13,40 @@ class DoctorSearchForm extends Component {
     this.props.fetchDoctors(values, this.props.userLocation);
   }
 
-  renderInput = ({ input, meta, label, type }) =>
+  renderInput = ({ input, meta, label, type, placeholder }) =>
   <div>
     <Label>{label}</Label>
-    <Input type={type} {...input} valid={meta.error && meta.touched ? false : null }/>
+    <Input className="condition-input" type={type} autoFocus placeholder={placeholder} {...input} valid={meta.error && meta.touched ? false : null }/>
     <FormFeedback >
       {meta.error && meta.touched ? <span>{meta.error}</span> : ''}
     </FormFeedback>
   </div>
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, userLocation } = this.props;
     return (
       <Form onSubmit={handleSubmit(this.searchDoctorsSubmit.bind(this))}>
         <FormGroup>
-          <Field name="condition" type="text" label="Condition" component={this.renderInput} />
+          <Field name="condition" type="text" placeholder="All Doctors" label="Condition / Speciality" component={this.renderInput} />
         </FormGroup>
 
-        <Button type="submit" outline color="info">Search Doctors</Button>
+        <Button type="submit" outline color="success" disabled={userLocation.fetched}>Search Doctors</Button>
       </Form>
     );
   }
 }
 
-const validate = values => {
-  const errors = {};
-  if(!values.condition) {
-    errors.condition = 'Condition is Required';
-  }
-  return errors;
-}
+// const validate = values => {
+//   const errors = {};
+//   if(!values.condition) {
+//     errors.condition = 'Condition is Required';
+//   }
+//   return errors;
+// }
 
 const form = reduxForm({
   form: 'SearchDoctorsForm',
-  validate
+  // validate
 });
 
 function mapStateToProps(state) {
