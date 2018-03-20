@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { PropagateLoader } from 'react-spinners';
 import { setGeoLocation } from '../../actions/geoLocationsActions';
 
 
@@ -50,6 +51,7 @@ class GeoLocationSearchForm extends Component {
   }
 
   handleSelect(address) {
+    console.log('handleSelect', this.state.loading);
     this.setState({
       address,
       loading: true,
@@ -59,10 +61,17 @@ class GeoLocationSearchForm extends Component {
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         this.props.setGeoLocation({ lat, lng });
-        this.setState({
-          // geocodeResults: this.renderGeocodeSuccess(lat, lng),
-          loading: false,
-        })
+        if (lat && lng) {
+          this.setState({
+            loading: false,
+          })
+
+        } else {
+          this.setState({
+            loading: true,
+          })
+        }
+        console.log('geocodeByAddress', this.state.loading);
       })
       .catch(error => {
         console.log('Geocode Error', error); // eslint-disable-line no-console
@@ -77,6 +86,7 @@ class GeoLocationSearchForm extends Component {
     this.setState({
       address,
       geocodeResults: null,
+      loading: false
     })
   }
 
@@ -137,8 +147,11 @@ class GeoLocationSearchForm extends Component {
           shouldFetchSuggestions={shouldFetchSuggestions}
         />
         {this.state.loading && (
-          <div>
-            <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
+          <div className='sweet-loading'>
+            <PropagateLoader
+              color={'#bcbdbc'}
+              loading={this.state.loading}
+              />
           </div>
         )}
         {this.state.geocodeResults && (

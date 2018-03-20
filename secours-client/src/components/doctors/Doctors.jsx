@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
+import { CircleLoader } from 'react-spinners';
 
 import DoctorSearchForm from '../../containers/doctors/DoctorSearchForm';
 import DoctorList from './DoctorList';
@@ -37,6 +38,7 @@ class Doctors extends Component {
 
   render() {
     const { doctors, fetchDoctors, userLocation } = this.props;
+    console.log(this.props.fetching);
     return (
       <Container fluid>
         <Row className="doctor-search">
@@ -66,6 +68,12 @@ class Doctors extends Component {
                 <img src="https://wallpaperstock.net/wallpapers/thumbs1/40189.jpg" alt="Norway" style={{ width: `100%` }} />
                 <div className="hero-container">
                   <div className="text-block">
+                    <div className='sweet-loading'>
+                      <CircleLoader
+                        color={'#fafef6'}
+                        loading={this.props.fetching}
+                        />
+                    </div>
                     <h1>Find a Doctor near you</h1>
                   </div>
                   </div>

@@ -7,6 +7,7 @@ import Doctors from '../../components/doctors/Doctors';
 const mapStateToProps = (state) => {
   return {
     doctors: state.doctors.doctors,
+    fetching: state.doctors.fetching,
     userLocation: state.geoLocation.coords
   };
 };

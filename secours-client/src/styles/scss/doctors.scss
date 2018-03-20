@@ -1,10 +1,8 @@
 .doctor-search {
   padding: 20px;
   opacity: 0.95;
-  background-color: #222226;
-  // background-color: #202e1d;
+  background-color: #242425;
   color: #d1d5d6;
-  // background: url('https://wallpaperstock.net/wallpapers/thumbs1/40189.jpg') no-repeat center center;
 }
 
 .map.col-8 {
@@ -13,22 +11,22 @@
 }
 
 input.condition-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 .doctor-search input#geo-location-input {
-    height: 2.42rem;
-    display: block;
-    width: 100%;
-    padding: .5rem .75rem;
-    font-size: 1rem;
-    line-height: 1.25;
-    color: #495057;
-    background-color: #fff;
-    background-image: none;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: .25rem;
+  height: 2.42rem;
+  display: block;
+  width: 100%;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #495057;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
 }
 
 img.doctor-container {
@@ -59,16 +57,19 @@ div.container-fluid {
 }
 
 .text-block {
-    // position: absolute;
-    // bottom: 20px;
-    // right: 20px;
-    // color: white;
-    // padding-left: 20px;
-    // padding-right: 20px;
-    // text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-container .sweet-loading {
+  position: relative;
+  left: 17rem;
+  top: 5rem;
+}
+
+.ReactVirtualized__Grid.ReactVirtualized__List {
+    padding: 1rem;
 }

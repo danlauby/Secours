@@ -2,4 +2,9 @@
   color: #d9534f;
   z-index: 1; }
 
+.doctor-search .sweet-loading {
+  position: relative;
+  top: 1rem;
+  left: 19rem; }
+
 /*# sourceMappingURL=geoLocationSearchForm.css.map */

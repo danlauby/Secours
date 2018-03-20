@@ -1,7 +1,7 @@
 .doctor-search {
   padding: 20px;
   opacity: 0.95;
-  background-color: #222226;
+  background-color: #242425;
   color: #d1d5d6; }
 
 .map.col-8 {
@@ -52,5 +52,13 @@ div.container-fluid {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white; }
+
+.hero-container .sweet-loading {
+  position: relative;
+  left: 17rem;
+  top: 5rem; }
+
+.ReactVirtualized__Grid.ReactVirtualized__List {
+  padding: 1rem; }
 
 /*# sourceMappingURL=doctors.css.map */
