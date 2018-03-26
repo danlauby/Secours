@@ -10,7 +10,7 @@ const DoctorItem = ({ doctors, index, listStyle }) => (
       to={{ pathname:`/doctor/${doctors[index].profile.first_name}-${doctors[index].profile.last_name}` }}>
       {doctors[index].profile.first_name} {doctors[index].profile.last_name} - {doctors[index].profile.title} <br />
     </Link>
-    {doctors[index].specialties[0].actors}
+    {doctors[index].specialties.length ? doctors[index].specialties[0].actors : 'specialty not listed'}
     <hr />
   </div>
 );

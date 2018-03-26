@@ -22,7 +22,7 @@ const renderFooter = () => (
 );
 
 // const cssClasses = {
-//   root: 'form-Geoup',
+//   root: 'form-Group',
 //   input: 'Doctor_Search',
 //   autocompleteContainer: 'Demo__autocomplete-container',
 // }
@@ -71,7 +71,6 @@ class GeoLocationSearchForm extends Component {
             loading: true,
           })
         }
-        console.log('geocodeByAddress', this.state.loading);
       })
       .catch(error => {
         console.log('Geocode Error', error); // eslint-disable-line no-console
@@ -165,7 +164,8 @@ class GeoLocationSearchForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.auth.user
+    currentUser: state.auth.user,
+    coordsFetched: state.geoLocation.fetched
   };
 }
 

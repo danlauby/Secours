@@ -37,8 +37,8 @@ class Doctors extends Component {
   }
 
   render() {
-    const { doctors, fetchDoctors, userLocation } = this.props;
-    console.log(this.props.fetching);
+    const { doctors, fetchDoctors, userLocation, fetching, fetched } = this.props;
+    // console.log(this.state.isDoctors);
     return (
       <Container fluid>
         <Row className="doctor-search">
@@ -71,7 +71,7 @@ class Doctors extends Component {
                     <div className='sweet-loading'>
                       <CircleLoader
                         color={'#fafef6'}
-                        loading={this.props.fetching}
+                        loading={fetching}
                         />
                     </div>
                     <h1>Find a Doctor near you</h1>
@@ -79,6 +79,7 @@ class Doctors extends Component {
                   </div>
                 </div>
             }
+            {!doctors.length && fetched ? <h2>No doctors found</h2> : ''}
       </Container>
     );
   }

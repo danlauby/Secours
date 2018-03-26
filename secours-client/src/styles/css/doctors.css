@@ -1,8 +1,23 @@
 .doctor-search {
+  position: relative;
+  z-index: 1;
   padding: 20px;
   opacity: 0.95;
   background-color: #242425;
   color: #d1d5d6; }
+
+button.btn.btn-success {
+  background-color: #242425;
+  border-color: #cbcbcb;
+  border-radius: 0; }
+
+button.btn.btn-success:hover {
+  background-color: #fff;
+  color: #38782e;
+  border-color: #38782e; }
+
+button.btn.btn-success:disabled:hover {
+  background-color: #2e2f2e; }
 
 .map.col-8 {
   padding: 0;
@@ -10,6 +25,9 @@
 
 input.condition-input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset; }
+
+.doctor-search input.condition-input {
+  border-radius: 0; }
 
 .doctor-search input#geo-location-input {
   height: 2.42rem;
@@ -23,7 +41,7 @@ input.condition-input:-webkit-autofill {
   background-image: none;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: .25rem; }
+  border-radius: 0; }
 
 img.doctor-container {
   width: 100%;
@@ -59,6 +77,6 @@ div.container-fluid {
   top: 5rem; }
 
 .ReactVirtualized__Grid.ReactVirtualized__List {
-  padding: 1rem; }
+  padding: 1rem 1rem 0 1rem; }
 
 /*# sourceMappingURL=doctors.css.map */

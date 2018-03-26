@@ -23,35 +23,29 @@ class DoctorSearchForm extends Component {
   </div>
 
   render() {
-    const { handleSubmit, userLocation } = this.props;
+    const { handleSubmit, userLocation, coordsFetched } = this.props;
     return (
       <Form onSubmit={handleSubmit(this.searchDoctorsSubmit.bind(this))}>
         <FormGroup>
           <Field name="condition" type="text" placeholder="All Doctors" label="Condition / Speciality" component={this.renderInput} />
         </FormGroup>
 
-        <Button type="submit" outline color="success" disabled={userLocation.fetched}>Search Doctors</Button>
+        <Button type="submit" color="success" disabled={!coordsFetched}>Search Doctors</Button>
       </Form>
     );
   }
 }
 
-// const validate = values => {
-//   const errors = {};
-//   if(!values.condition) {
-//     errors.condition = 'Condition is Required';
-//   }
-//   return errors;
-// }
 
 const form = reduxForm({
-  form: 'SearchDoctorsForm',
-  // validate
+  form: 'SearchDoctorsForm'
 });
 
 function mapStateToProps(state) {
   return {
-    userLocation: state.geoLocation.coords
+    userLocation: state.geoLocation.coords,
+    fetching: state.doctors.fetching,
+    coordsFetched: state.geoLocation.fetched
   }
 }
 

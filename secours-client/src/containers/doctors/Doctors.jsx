@@ -8,7 +8,9 @@ const mapStateToProps = (state) => {
   return {
     doctors: state.doctors.doctors,
     fetching: state.doctors.fetching,
-    userLocation: state.geoLocation.coords
+    fetched: state.doctors.fetched,
+    userLocation: state.geoLocation.coords,
+    coordsFetched: state.geoLocation.fetched
   };
 };
 
