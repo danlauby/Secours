@@ -162,4 +162,7 @@ div.container-fluid {
 .main-nav .navbar a.nav-link {
   color: #c4c4c4; }
 
+.alert {
+  margin-bottom: 0 !important; }
+
 /*# sourceMappingURL=index.css.map */
