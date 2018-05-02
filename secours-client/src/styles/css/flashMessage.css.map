@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,MAAO;EACL,aAAa,EAAE,YAAY",
+"sources": ["../scss/flashMessage.scss"],
+"names": [],
+"file": "flashMessage.css"
+}

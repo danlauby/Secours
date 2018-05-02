@@ -12,7 +12,7 @@ import SignupPage from './signup/SignupPage';
 import LoginPage from './login/LoginPage';
 import ShareContentPage from './shareContent/ShareContentPage';
 import FlashMessagesList from '../containers/flash/FlashMessagesList';
-
+import UserProfile from '../containers/userProfile/UserProfile';
 
 
 const App = () => {
@@ -27,6 +27,7 @@ const App = () => {
         <Route path="/content" component={requireAuth(ShareContentPage)} />
         <Route path="/doctors" component={requireAuth(Doctors)} />
         <Route path="/doctor/:name" component={requireAuth(DoctorView)} />
+        <Route path="/user" component={requireAuth(UserProfile)} />
       </Switch>
     </div>
   );

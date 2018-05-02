@@ -11,14 +11,17 @@ import { addFlashMessage } from '../../actions/flashMessages';
 class LoginForm extends Component {
 
   loginSubmit = (values) => {
+    this.props.flashMessages.splice(-1,1);
     this.props.login(values).then(
       () => {
+        if (this.props.auth.isAuthenticated) {
         this.props.addFlashMessage({
           type: 'success',
           text: `Welcome Back ${values.identifier}!`
         });
         this.props.history.push('/');
       }
+    }
     );
   }
 
@@ -72,5 +75,12 @@ LoginForm.propTypes = {
   history: PropTypes.object.isRequired
 }
 
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+    flashMessages: state.flashMessages
+  };
+}
 
-export default withRouter(connect(null, { login, addFlashMessage })(form(LoginForm)));
+
+export default withRouter(connect(mapStateToProps, { login, addFlashMessage })(form(LoginForm)));

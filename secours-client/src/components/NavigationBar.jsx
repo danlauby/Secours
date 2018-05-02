@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../actions/authActions';
+import { addFlashMessage } from '../actions/flashMessages';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
   Collapse,
@@ -29,9 +30,13 @@ import {
       this.toggle = this.toggle.bind(this);
     }
 
-    handleLogout(e) {
-      e.preventDefault();
+    handleLogout = () => {
+      this.props.flashMessages.splice(-1,1);
       this.props.logout();
+          this.props.addFlashMessage({
+            type: 'success',
+            text: `Goodbye ${this.props.auth.user.username}, please visit us again soon!`
+          });
     }
 
     toggle() {
@@ -56,11 +61,11 @@ import {
             </DropdownToggle>
             <DropdownMenu >
               <DropdownItem>
-                <Link to="/">Profile</Link>
+                <Link to="/user">Profile</Link>
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>
-                <Link to="/" onClick={this.handleLogout}>Logout</Link>
+                <Link to="/login" onClick={this.handleLogout}>Logout</Link>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -97,13 +102,15 @@ import {
 
   NavigationBar.propTypes = {
     auth: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
   }
 
   function mapStateToProps(state) {
     return {
-      auth: state.auth
+      auth: state.auth,
+      flashMessages: state.flashMessages
     };
   }
 
-  export default connect(mapStateToProps, { logout })(NavigationBar);
+  export default withRouter(connect(mapStateToProps, { logout, addFlashMessage })(NavigationBar));
