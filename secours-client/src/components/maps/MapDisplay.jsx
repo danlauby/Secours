@@ -12,7 +12,6 @@ const MapDisplay = compose(
   containerElement: <div style={{ height: `450px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
-  withScriptjs,
   withGoogleMap
   )(props => (
     <GoogleMap defaultZoom={9} defaultCenter={props.center}>
